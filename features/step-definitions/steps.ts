@@ -1,5 +1,5 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import { expect, $ } from '@wdio/globals'
+import { expect } from '@wdio/globals'
 
 import LoginPage from '../pageobjects/login.page.js';
 import SecurePage from '../pageobjects/secure.page.js';
@@ -9,6 +9,7 @@ const pages = {
 }
 
 Given(/^I am on the (\w+) page$/, async (page) => {
+    // @ts-ignore
     await pages[page].open()
 });
 
@@ -19,5 +20,8 @@ When(/^I login with (\w+) and (.+)$/, async (username, password) => {
 Then(/^I should see a flash message saying (.*)$/, async (message) => {
     await expect(SecurePage.flashAlert).toBeExisting();
     await expect(SecurePage.flashAlert).toHaveText(expect.stringContaining(message));
+    if (message === "Logged in!") {
+        await SecurePage.logout();
+    }
 });
 
