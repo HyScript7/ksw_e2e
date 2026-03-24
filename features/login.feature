@@ -7,6 +7,8 @@ Feature: The Internet Guinea Pig Website
     Then I should see a flash message saying <message>
 
     Examples:
-      | username | password             | message                        |
-      | script   | script               | Logged in!                     |
-      | script2  | barfoo               | Unauthorized                   |
+      | username          | password                   | message |
+      | standard_user     | secret_sauce               | |
+      |                   |                            | Epic sadface: Username is required |
+      | standard_user     |                            | Epic sadface: Password is required |
+      | nonexistent_user  | foobar                     | Epic sadface: Username and password do not match any user in this service |
