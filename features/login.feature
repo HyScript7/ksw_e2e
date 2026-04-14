@@ -66,3 +66,14 @@ Feature: The Internet Guinea Pig Website
     Examples:
       | a |
       | a |
+
+  Scenario Outline: Login and logout
+    Given I am on the login page
+    When I login with standard_user and secret_sauce
+    Then the inventory page should be loaded
+    When I logout via the menu
+    Then I should be on the login page
+
+    Examples:
+      | a |
+      | a |

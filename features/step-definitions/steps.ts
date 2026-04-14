@@ -31,6 +31,12 @@ Then(/^I should see a flash message saying "(.*)?"$/, async (message) => {
     await expect(LoginPage.flashAlert).toHaveText(message);
 });
 
+Then("I should be on the login page", async () => {
+    await expect(LoginPage.inputUsername).toBeDisplayed();
+    await expect(LoginPage.inputPassword).toBeDisplayed();
+    await expect(LoginPage.btnSubmit).toBeDisplayed();
+});
+
 // ── Navigation / Page Load ────────────────────────────────────────────────────
 
 Then(/^the inventory page should be loaded$/, async () => {
@@ -39,7 +45,7 @@ Then(/^the inventory page should be loaded$/, async () => {
 });
 
 Then(/^the cart page should be loaded$/, async () => {
-
+    // mock
 });
 
 Then(/^the page title should be "([^"]*)"$/, async (title: string) => {
