@@ -1,3 +1,4 @@
+import { $ } from '@wdio/globals'
 import Page from "./page.ts";
 
 type SortOption = 'az' | 'za' | 'lohi' | 'hilo';
@@ -164,10 +165,10 @@ class InventoryPage extends Page {
      * Returns the inventory item element whose name matches the given text.
      */
     async getItemByName(name: string): Promise<WebdriverIO.Element> {
-        const items = await this.inventoryItems;
-        for (const item of items) {
-            const itemName = await item.$('[data-test="inventory-item-name"]').getText();
-            if (itemName === name) return item;
+        const items = this.inventoryItems;
+        for (const item of await items.getElements()) {
+            const itemName = item.$('[data-test="inventory-item-name"]');
+            if (itemName !== undefined && itemName !== null && await itemName.getText() === name) return item;
         }
         throw new Error(`Inventory item "${name}" not found`);
     }
