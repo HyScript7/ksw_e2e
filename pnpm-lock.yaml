@@ -32,6 +32,9 @@ importers:
       expect-webdriverio:
         specifier: ^5.6.4
         version: 5.6.4(@wdio/globals@9.23.0)(@wdio/logger@9.18.0)(webdriverio@9.24.0)
+      wdio-cucumberjs-json-reporter:
+        specifier: ^6.0.1
+        version: 6.0.1(@wdio/cucumber-framework@9.24.0)(@wdio/globals@9.23.0)(@wdio/types@9.24.0)(webdriverio@9.24.0)
       wdio-json-html-reporter:
         specifier: ^1.5.14
         version: 1.5.14
@@ -1210,6 +1213,10 @@ packages:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
 
+  fs-extra@11.3.4:
+    resolution: {integrity: sha512-CTXd6rk/M3/ULNQj8FBqBWHYBVYybQ3VPBw0xGKFe3tuH7ytT6ACnvzpIQ3UZtB8yvUKC2cXn1a+x+5EVQLovA==}
+    engines: {node: '>=14.14'}
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -1454,6 +1461,9 @@ packages:
   json-parse-even-better-errors@3.0.2:
     resolution: {integrity: sha512-fi0NG4bPjCHunUJffmLd0gxssIgkNmArMvis4iNah6Owg1MCJjWhEcDLmsK6iGkJq3tHwbDkTlce70/tmXN4cQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  jsonfile@6.2.0:
+    resolution: {integrity: sha512-FGuPw30AdOIUTRMC2OMRtQV+jkVj2cfPqSeWXv1NEAJ1qZ5zb1X6z1mFhbfOB/iy3ssJCD+3KuZ8r8C3uVFlAg==}
 
   jszip@3.10.1:
     resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
@@ -2136,6 +2146,10 @@ packages:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
 
+  universalify@2.0.1:
+    resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
+    engines: {node: '>= 10.0.0'}
+
   upper-case-first@2.0.2:
     resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
 
@@ -2173,6 +2187,14 @@ packages:
 
   wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
+
+  wdio-cucumberjs-json-reporter@6.0.1:
+    resolution: {integrity: sha512-kNicL9QjQpUBYtja+kwIHnnFkRfPZYO9SYY3tyMWkVAgEqlHsLJOci0Jhl607ABa4UbgEoAs+SUTOiZKuUt3NQ==}
+    peerDependencies:
+      '@wdio/cucumber-framework': ^9.0.0
+      '@wdio/globals': ^9.0.0
+      '@wdio/types': ^9.0.0
+      webdriverio: ^9.0.0
 
   wdio-json-html-reporter@1.5.14:
     resolution: {integrity: sha512-4Lh9SUipoCcLmV1+6ulM67GXJeV2TeDAOFl8J7gQaJUsSZ0NE/AX+EOkJDOQzT7uZkFeUJV2caPKOsCfTjZAGg==}
@@ -3698,6 +3720,12 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
+  fs-extra@11.3.4:
+    dependencies:
+      graceful-fs: 4.2.11
+      jsonfile: 6.2.0
+      universalify: 2.0.1
+
   fsevents@2.3.3:
     optional: true
 
@@ -3973,6 +4001,12 @@ snapshots:
   json-parse-even-better-errors@2.3.1: {}
 
   json-parse-even-better-errors@3.0.2: {}
+
+  jsonfile@6.2.0:
+    dependencies:
+      universalify: 2.0.1
+    optionalDependencies:
+      graceful-fs: 4.2.11
 
   jszip@3.10.1:
     dependencies:
@@ -4628,6 +4662,8 @@ snapshots:
 
   unicorn-magic@0.3.0: {}
 
+  universalify@2.0.1: {}
+
   upper-case-first@2.0.2:
     dependencies:
       tslib: 2.8.1
@@ -4665,6 +4701,18 @@ snapshots:
     dependencies:
       defaults: 1.0.4
     optional: true
+
+  wdio-cucumberjs-json-reporter@6.0.1(@wdio/cucumber-framework@9.24.0)(@wdio/globals@9.23.0)(@wdio/types@9.24.0)(webdriverio@9.24.0):
+    dependencies:
+      '@cucumber/gherkin': 29.0.0
+      '@wdio/cucumber-framework': 9.24.0
+      '@wdio/globals': 9.23.0(expect-webdriverio@5.6.4)(webdriverio@9.24.0)
+      '@wdio/logger': 9.18.0
+      '@wdio/reporter': 9.24.0
+      '@wdio/types': 9.24.0
+      fs-extra: 11.3.4
+      strip-ansi: 7.2.0
+      webdriverio: 9.24.0
 
   wdio-json-html-reporter@1.5.14:
     dependencies:
